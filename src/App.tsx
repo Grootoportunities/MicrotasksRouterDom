@@ -9,8 +9,11 @@ import { Model } from "./components/Model";
 
 const PATH = {
   ADIDAS: "/adidas",
+  ADIDAS_PARAMS: "/adidas/:id",
   PUMA: "/puma",
+  PUMA_PARAMS: "/puma/:id",
   ABIBAS: "/abibas",
+  ABIBAS_PARAMS: "/abibas/:id",
   ERROR404: "/error404",
 } as const;
 
@@ -38,9 +41,18 @@ function App() {
             <Route path={PATH.ADIDAS} element={<Adidas />} />
             <Route path={PATH.PUMA} element={<Puma />} />
             <Route path={PATH.ABIBAS} element={<Abibas />} />
-            <Route path={"/adidas/:id"} element={<Model boots={adidasArr} />} />
-            <Route path={"/puma/:id"} element={<Model boots={pumaArr} />} />
-            <Route path={"/abibas/:id"} element={<Model boots={abibasArr} />} />
+            <Route
+              path={PATH.ADIDAS_PARAMS}
+              element={<Model boots={adidasArr} />}
+            />
+            <Route
+              path={PATH.PUMA_PARAMS}
+              element={<Model boots={pumaArr} />}
+            />
+            <Route
+              path={PATH.ABIBAS_PARAMS}
+              element={<Model boots={abibasArr} />}
+            />
             <Route path={"/*"} element={<Error404 />} />
           </Routes>
         </S.Content>

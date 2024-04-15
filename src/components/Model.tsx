@@ -1,8 +1,7 @@
-import { adidasArr, BootItem } from "./pages/Adidas";
+import { BootItem } from "./pages/Adidas";
 import { useParams } from "react-router-dom";
 import { S } from "./pages/_styles";
 import React, { FC } from "react";
-import { pumaArr } from "./pages/Puma";
 
 type ModelProps = {
   boots: BootItem[];
