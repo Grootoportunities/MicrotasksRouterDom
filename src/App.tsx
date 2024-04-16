@@ -1,19 +1,17 @@
 import React from "react";
 import { Navigate, NavLink, Route, Routes } from "react-router-dom";
-import { Adidas, adidasArr } from "./components/pages/Adidas";
-import { Puma, pumaArr } from "./components/pages/Puma";
-import { Abibas, abibasArr } from "./components/pages/Abibas";
+import { Adidas } from "./components/pages/Adidas";
+import { Puma } from "./components/pages/Puma";
+import { Abibas } from "./components/pages/Abibas";
 import { Error404 } from "./components/pages/Error404";
 import { S } from "./components/pages/_styles";
 import { Model } from "./components/Model";
 
 const PATH = {
   ADIDAS: "/adidas",
-  ADIDAS_PARAMS: "/adidas/:id",
   PUMA: "/puma",
-  PUMA_PARAMS: "/puma/:id",
   ABIBAS: "/abibas",
-  ABIBAS_PARAMS: "/abibas/:id",
+  BOOTS_PARAMS: "/:model/:id",
   ERROR404: "/error404",
 } as const;
 
@@ -41,18 +39,7 @@ function App() {
             <Route path={PATH.ADIDAS} element={<Adidas />} />
             <Route path={PATH.PUMA} element={<Puma />} />
             <Route path={PATH.ABIBAS} element={<Abibas />} />
-            <Route
-              path={PATH.ADIDAS_PARAMS}
-              element={<Model boots={adidasArr} />}
-            />
-            <Route
-              path={PATH.PUMA_PARAMS}
-              element={<Model boots={pumaArr} />}
-            />
-            <Route
-              path={PATH.ABIBAS_PARAMS}
-              element={<Model boots={abibasArr} />}
-            />
+            <Route path={PATH.BOOTS_PARAMS} element={<Model />} />
             <Route path={"/*"} element={<Error404 />} />
           </Routes>
         </S.Content>
