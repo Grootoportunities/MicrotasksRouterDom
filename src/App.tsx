@@ -6,6 +6,7 @@ import { Abibas } from "./components/pages/Abibas";
 import { Error404 } from "./components/pages/Error404";
 import { S } from "./components/pages/_styles";
 import { Model } from "./components/Model";
+import { Prices } from "./components/pages/Prices";
 
 const PATH = {
   ADIDAS: "/adidas",
@@ -13,6 +14,7 @@ const PATH = {
   ABIBAS: "/abibas",
   BOOTS_PARAMS: "/:model/:id",
   ERROR404: "/error404",
+  PRICES: "/prices",
 } as const;
 
 function App() {
@@ -32,6 +34,9 @@ function App() {
           <S.NavWrapper>
             <NavLink to={PATH.ABIBAS}>ABIBAS</NavLink>
           </S.NavWrapper>
+          <S.NavWrapper>
+            <NavLink to={PATH.PRICES}>PRICES</NavLink>
+          </S.NavWrapper>
         </S.Nav>
         <S.Content>
           <Routes>
@@ -40,6 +45,7 @@ function App() {
             <Route path={PATH.PUMA} element={<Puma />} />
             <Route path={PATH.ABIBAS} element={<Abibas />} />
             <Route path={PATH.BOOTS_PARAMS} element={<Model />} />
+            <Route path={PATH.PRICES} element={<Prices />} />
             <Route path={"/*"} element={<Error404 />} />
           </Routes>
         </S.Content>
