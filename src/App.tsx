@@ -1,23 +1,14 @@
 import React from "react";
-import { Navigate, NavLink, Route, Routes } from "react-router-dom";
-import { Adidas } from "./components/pages/Adidas";
-import { Puma } from "./components/pages/Puma";
-import { Abibas } from "./components/pages/Abibas";
-import { Error404 } from "./components/pages/Error404";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { S } from "./components/pages/_styles";
-import { Model } from "./components/Model";
-import { Prices } from "./components/pages/Prices";
-
-const PATH = {
-  ADIDAS: "/adidas",
-  PUMA: "/puma",
-  ABIBAS: "/abibas",
-  BOOTS_PARAMS: "/:model/:id",
-  ERROR404: "/error404",
-  PRICES: "/prices",
-} as const;
+import { PATH } from "./routes/router";
+import styled from "styled-components";
 
 function App() {
+  const navigate = useNavigate();
+
+  const navigateHandler = () => navigate(-1);
+
   return (
     <div>
       <S.Header>
@@ -37,17 +28,16 @@ function App() {
           <S.NavWrapper>
             <NavLink to={PATH.PRICES}>PRICES</NavLink>
           </S.NavWrapper>
+          <S.NavWrapper>
+            <NavLink to={PATH.PROTECTED_PAGE}>PROTECTED PAGE</NavLink>
+          </S.NavWrapper>
         </S.Nav>
         <S.Content>
-          <Routes>
-            <Route path={""} element={<Navigate to={PATH.ADIDAS} />} />
-            <Route path={PATH.ADIDAS} element={<Adidas />} />
-            <Route path={PATH.PUMA} element={<Puma />} />
-            <Route path={PATH.ABIBAS} element={<Abibas />} />
-            <Route path={PATH.BOOTS_PARAMS} element={<Model />} />
-            <Route path={PATH.PRICES} element={<Prices />} />
-            <Route path={"/*"} element={<Error404 />} />
-          </Routes>
+          <HorizontalNavigation>
+            <LinkLikeButton to={PATH.ADIDAS}>ГЛАВНАЯ СТРАНИЦА</LinkLikeButton>
+            <ButtonLikeLink onClick={navigateHandler}>НАЗАД</ButtonLikeLink>
+          </HorizontalNavigation>
+          <Outlet />
         </S.Content>
       </S.Body>
       <S.Footer>abibas 2023</S.Footer>
@@ -56,3 +46,30 @@ function App() {
 }
 
 export default App;
+
+const HorizontalNavigation = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const LinkLikeButton = styled(NavLink)`
+  height: 54px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ButtonLikeLink = styled.button`
+  margin-left: 5px;
+  height: 55px;
+  background-color: #ff00b7;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 30px;
+`;
